@@ -13,7 +13,6 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(express.json());
 
 if (!isProduction) {
   // allows cross origin requests when not in prod
@@ -34,6 +33,8 @@ app.use(
     }
   })
 );
+
+app.use(express.json());
 
 app.use(require('./routes'));
 

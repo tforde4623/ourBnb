@@ -9,12 +9,16 @@ export async function csrfFetch(url, options = {}) {
   // check if mth is not GET
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] =
-      options.headers['Content-Type'] || 'applications/json';
+      options.headers['Content-Type'] || 'application/json';
     options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
   }
 
   // simply call fetch with our fancy options
-  const res = await window.fetch(url, options);
+  const res = await window.fetch(url, {
+    body: options.body,
+    method: options.method,
+    headers: options.headers
+  });
 
   // if we get an error response (above 400) throw that baby
   if (res.status >= 400) throw res;
