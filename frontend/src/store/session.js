@@ -32,6 +32,38 @@ export const loginUser = userObj => async dispatch => {
   return res;
 };
 
+// thunk for restoring session (persisting user on refresh)
+export const restoreUser = () => async dispatch => {
+  const res = await csrfFetch('/api/session');
+  const resObj = await res.json();
+  dispatch(setUser(resObj.user))
+  return res;
+};
+
+// thunk for signing up the user
+export const signupUser = userDetails => async dispatch => {
+  const res = await csrfFetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify({
+      username: userDetails.username,
+      email: userDetails.email,
+      password: userDetails.password
+    }),
+  });
+  const resObj = await res.json();
+  dispatch(setUser(resObj.user));
+  return res;
+};
+
+// thunk for logging out the user
+export const logoutUser = () => async dispatch => {
+  const res = await csrfFetch('/api/session', {
+    method: 'DELETE'
+  });
+  dispatch(removeUser());
+  return res;
+};
+
 // initial state should not contain a user
 const initialState = { user: null };
 
