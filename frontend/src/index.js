@@ -8,11 +8,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 const store = configureStore();
 
-// if app not running in prod, allow easy access through browser
+// if not prod => allow access to fetch method in console, and fetch token from server
 if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
   window.store = store;
 }
 

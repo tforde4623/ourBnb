@@ -1,0 +1,29 @@
+import Cookies from 'js-cookie';
+
+// a function to make fetch requests with our xsrf token parsed from cookie
+export async function csrfFetch(url, options = {}) {
+  // setting some "default" values for the options obj
+  options.method = options.method || 'GET';
+  options.headers = options.headers || {};
+
+  // check if mth is not GET
+  if (options.method.toUpperCase() !== 'GET') {
+    options.headers['Content-Type'] =
+      options.headers['Content-Type'] || 'applications/json';
+    options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
+  }
+
+  // simply call fetch with our fancy options
+  const res = await window.fetch(url, options);
+
+  // if we get an error response (above 400) throw that baby
+  if (res.status >= 400) throw res;
+
+  // if we get a valid response, or code under 400 return that baby
+  return res;
+};
+
+// function for use in dev to get xsrf token from "server"
+export function restoreCSRF() {
+  return csrfFetch('/api/csrf/restore');
+};
