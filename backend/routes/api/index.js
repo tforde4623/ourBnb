@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const asyncHandler = require('express-async-handler');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
+
+router.use('/session', require('./session.js'));
+router.use('/user', require('./users.js'));
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
