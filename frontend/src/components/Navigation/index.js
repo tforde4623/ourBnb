@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
+    <ul className='nav-container'>
       <li>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}

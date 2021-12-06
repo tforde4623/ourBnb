@@ -25,7 +25,8 @@
   padding: 10px;
   border-radius: 2px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
-  width: 300px
+  width: 300px;
+  color: #333333;
 }
 
 #modal-content form {
@@ -41,9 +42,9 @@
 }
 
 #modal-content h2 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-top: 5px;
-  color: #333333;
+  font-size: 30px;
 }
 
 #modal-content input {
@@ -60,6 +61,10 @@
 #modal-content .input-container {
   position: relative;
   width: fit-content;
+}
+
+#modal-content .password-input-container {
+  margin-top: 10px;
 }
 
 #modal-content i {
@@ -79,7 +84,8 @@
   border: none;
   border-radius: 3px;
   padding: 7px;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 #modal-content button:hover {
