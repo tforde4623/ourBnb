@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-import './index.css';
-
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-
-import configureStore from './store';
-import { restoreCSRF, csrfFetch } from './store/csrf';
-import * as sessionActions from './store/session';
+import configureStore from "./store";
+import { ModalProvider } from "./context/Modal";
+import { restoreCSRF, csrfFetch } from "./store/csrf";
+import * as sessionActions from "./store/session";
+import "./index.css";
+import App from "./App";
 
 const store = configureStore();
 
-// if not prod => allow access to fetch method in console, and fetch token from server
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
 
   window.csrfFetch = csrfFetch;
@@ -25,9 +23,11 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   );
 }
