@@ -1,11 +1,42 @@
 .nav-container {
   /* figure out the coloration of navbar later */
-  background-color: red;
+  background-color: black;
   list-style: none;
   margin: 0px;
   padding: 10px;
   height: 40px;
   display: flex;
   justify-content: space-between;
+}
+
+/* profile button dropdown css  */
+.profile-dropdown {
+  position: absolute;
+  list-style: none;
+  right: 12px;
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 9px;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.dropdown-btn {
+  border-radius: 15px;
+  background-color: white;
+  border: none;
+}
+
+.dropdown-icon {
+  margin: 5px;
+}
+
+.dropdown-item {
+  padding: 5px;
+}
+
+.dropdown-group1, .dropdown-group2 {
+  padding: 5px;
+
 }
 
