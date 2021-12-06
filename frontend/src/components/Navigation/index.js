@@ -12,23 +12,26 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <li>
+        <ProfileButton user={sessionUser} />
+      </li>
     );
   } else {
     sessionLinks = (
-      <>
+      <li>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      </li>
     );
   }
 
+  // TODO: put login/signup stuff in a drop down
   return (
     <ul className='nav-container'>
       <li>
         <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
       </li>
+        {isLoaded && sessionLinks}
     </ul>
   );
 }
