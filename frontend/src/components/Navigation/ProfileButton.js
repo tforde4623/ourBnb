@@ -43,8 +43,8 @@ function ProfileButton({ user }) {
           </div>
           <hr/>
           <div className='dropdown-group2'>
-            <li className='dropdown-item'>
-              <button onClick={logout}>Log Out</button>
+            <li onClick={logout} className='dropdown-item'>
+              Log Out
             </li>
           </div>
         </ul>

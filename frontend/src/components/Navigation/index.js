@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -8,6 +8,12 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const [searchVisible, setSearchVisible] = useState(false); // may change default to persist
+
+  const openSearch = () => {
+    if (searchVisible) return;
+    setSearchVisible(true);
+  } 
 
   let sessionLinks;
   if (sessionUser) {
@@ -28,10 +34,19 @@ function Navigation({ isLoaded }){
   // TODO: put login/signup stuff in a drop down
   return (
     <ul className='nav-container'>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+      <li className='nav-link'>
+        <NavLink exact to="/">ourbnb</NavLink>
       </li>
-        {isLoaded && sessionLinks}
+      <li onClick={openSearch} className='nav-link nav-places-search'>
+        Places to stay
+        {searchVisible && (
+          <input
+            className='nav-link searchbar-popup'
+            placeholder='choose a location!'
+          ></input>
+        )}
+      </li>
+      {isLoaded && sessionLinks}
     </ul>
   );
 }
