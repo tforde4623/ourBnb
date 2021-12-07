@@ -16,8 +16,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   Location.init({
     ownerId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT
+    title: {
+      type: DataTypes.STRING,
+      alowNull: false,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Location',
