@@ -1,0 +1,10 @@
+.location-card {
+  color: black;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+  width: 150px;
+}
+
+.location-card img {
+  width: 130px;
+  height: 130px;
+}
