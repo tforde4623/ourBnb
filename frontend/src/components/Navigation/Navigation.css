@@ -70,3 +70,7 @@
   color: black;
 }
 
+#searchSelected {
+  text-decoration: underline;
+}
+

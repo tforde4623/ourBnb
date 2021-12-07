@@ -38,7 +38,9 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/">ourbnb</NavLink>
       </li>
       <li onClick={openSearch} className='nav-link nav-places-search'>
-        Places to stay
+        <p
+          id={searchVisible && 'searchSelected'}
+          className='places-nav-link'>Places to stay</p>
         {searchVisible && (
           <input
             className='nav-link searchbar-popup'
