@@ -8,7 +8,6 @@ import './LocationCardIndex.css';
 // or like an all places... idk yet look at the actual website
 const LocationCardIndex = () => {
   const [locations, setLocations] = useState([]);
-
   // change this to a thunk if they want 
   // (though idk why they would since we won't need this exact data anywhere else)
   // or the "im flexible" (i'm not sure where to go) page
