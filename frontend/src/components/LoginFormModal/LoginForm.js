@@ -27,7 +27,7 @@ const LoginForm = ({ setShowModal }) => {
   let errorUlContent;
   if (errors.length) {
     errorUlContent =
-      <ul class="error-ul">
+      <ul className="error-ul">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
   }
