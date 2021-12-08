@@ -65,12 +65,12 @@ const AddLocationForm = () => {
         onChange={e => setLocation(e.target.value)}
         className='form-input'
       />
-      <input
+      <textare
         placeholder='Spot description'
         value={description}
         onChange={e => setDescription(e.target.value)}
         className='form-input'
-      />
+      ></textare>
       <input
         placeholder='Cost per night?'
         value={price}
