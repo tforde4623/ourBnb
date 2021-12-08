@@ -1,12 +1,15 @@
 import React from 'react';
 
 const LocationCard = ({ spot, image }) => {
+  const shortLocation = spot.location.slice(0, 15) + '...';
 
   return (
     <div className='location-card'>
-      <h2>{spot.title}</h2>
-      <img src={image.imageUrl} alt='location preview'/>
-      <p>{spot.description}</p>
+      <img src={image.imageUrl || null} alt='location preview'/>
+      <h3 className='location-card-title'>
+        <span>{shortLocation}</span> 
+        <span>{spot.price}$ / night</span>
+      </h3>
     </div>
   );
 }

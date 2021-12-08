@@ -6,6 +6,7 @@ import * as sessionActions from './store/session';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import LocationCardIndex from './components/LocationCardIndex'
+import AddLocationForm from './components/addLocationForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path='/add-location'>
+            <AddLocationForm />
+          </Route>
           <Route path="/any-location">
             <LocationCardIndex />
           </Route>

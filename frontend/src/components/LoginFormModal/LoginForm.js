@@ -47,7 +47,7 @@ const LoginForm = ({ setShowModal }) => {
             onChange={e => setCredential(e.target.value)}
             placeHolder='Enter Username'
           />
-          <i class='fa fa-user fa-lg' />
+          <i className='fa fa-user fa-lg' />
         </div>
 
         <div className='input-container password-input-container'>
@@ -58,7 +58,7 @@ const LoginForm = ({ setShowModal }) => {
             onChange={e => setPassword(e.target.value)}
             placeHolder='Enter Password'
           />
-          <i class='fa fa-lock fa-lg' />
+          <i className='fa fa-lock fa-lg' />
         </div>
         <button>Login</button>
       </form>

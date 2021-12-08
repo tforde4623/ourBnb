@@ -8,6 +8,7 @@ module.exports = {
         title: 'Fun Beach House',
         description: 'A super fun beach house that is super fun... this is only an example of a fun place to go so tommy can test the db!',
         location: 'Florida Keys, Key West, FL',
+        price: 375,
         createdAt: new Date(),
         updatedAt: new Date()
       }
