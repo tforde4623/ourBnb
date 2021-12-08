@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import LocationCard from './LocationCard';
 import './LocationCardIndex.css';
+import { getLocations } from '../../store/locations';
 
-// figure out where to put this (if you need it along with the search)
-// maybe throw it in an "experience" page, i'm not sure itll be the home page
-// or like an all places... idk yet look at the actual website
 const LocationCardIndex = () => {
-  const [locations, setLocations] = useState([]);
-  // change this to a thunk if they want 
-  // (though idk why they would since we won't need this exact data anywhere else)
-  // or the "im flexible" (i'm not sure where to go) page
-  useEffect(() => {
-    async function fetchLocations() {
-      const locations = await fetch('/api/locations');
-      const res = await locations.json();
-      setLocations(res);
-    }
+  const dispatch = useDispatch();
 
-    fetchLocations();
-  }, [setLocations]);
+  useEffect(() => {
+    dispatch(getLocations())
+  }, [dispatch]);
+
+  const locations = useSelector(state => state.location.locations) || [];
 
   return (
-    <div>
+    <div className='locations-container'>
     {locations.map(spot => ( 
-      <LocationCard image={spot.Images[0]} spot={spot}/>
+      <LocationCard 
+        image={spot.Images[0]} 
+        spot={spot}
+        key={spot.id}
+      />
     ))}
     </div>
   );

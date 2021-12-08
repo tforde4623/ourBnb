@@ -22,7 +22,6 @@ router.get(
         limit: 10
       });
 
-    console.log(locations)
     res.json(locations);
   })
 );

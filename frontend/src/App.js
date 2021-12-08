@@ -21,17 +21,19 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route path='/add-location'>
-            <AddLocationForm />
-          </Route>
-          <Route path="/any-location">
-            <LocationCardIndex />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
+        <div className='content'>
+          <Switch>
+            <Route path='/add-location'>
+              <AddLocationForm />
+            </Route>
+            <Route path="/any-location">
+              <LocationCardIndex />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        </div>
       )}
     </>
   );

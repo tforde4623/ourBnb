@@ -1,3 +1,11 @@
+.locations-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+}
+
 .location-card {
   color: black;
   width: 200px;

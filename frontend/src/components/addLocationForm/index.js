@@ -42,49 +42,51 @@ const AddLocationForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className='location-form'
-    >
-      {errors && (
-        <ul>
-          {errors.map(err => (
-            <li>{err}</li>
-          ))}
-        </ul>
-      )}
-      <input
-        placeholder='Spot Title'
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        className='form-input'
-      />
-      <input
-        placeholder='Where is it?'
-        value={location}
-        onChange={e => setLocation(e.target.value)}
-        className='form-input'
-      />
-      <textare
-        placeholder='Spot description'
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        className='form-input'
-      ></textare>
-      <input
-        placeholder='Cost per night?'
-        value={price}
-        onChange={e => setPrice(e.target.value)}
-        className='form-input'
-      />
-      <input
-        placeholder='Preview image url?'
-        value={image}
-        onChange={e => setImage(e.target.value)}
-        className='form-input'
-      />
-      <button>Submit</button>
-    </form>
+    <div className='form-container'>
+      <form
+        onSubmit={handleSubmit}
+        className='location-form'
+      >
+        {errors && (
+          <ul>
+            {errors.map(err => (
+              <li>{err}</li>
+            ))}
+          </ul>
+        )}
+        <input
+          placeholder='Spot Title'
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          className='form-input'
+        />
+        <input
+          placeholder='Where is it?'
+          value={location}
+          onChange={e => setLocation(e.target.value)}
+          className='form-input'
+        />
+        <textarea
+          placeholder='Spot description'
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          className='form-input'
+        ></textarea>
+        <input
+          placeholder='Cost per night?'
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+          className='form-input'
+        />
+        <input
+          placeholder='Preview image url?'
+          value={image}
+          onChange={e => setImage(e.target.value)}
+          className='form-input'
+        />
+        <button>Submit</button>
+      </form>
+    </div>
   );
 }
 
