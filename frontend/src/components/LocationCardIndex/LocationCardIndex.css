@@ -1,10 +1,29 @@
+.locations-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+}
+
 .location-card {
   color: black;
-  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
-  width: 150px;
+  width: 200px;
+  height: 250px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: normal;
+  margin: 15px;
 }
 
 .location-card img {
-  width: 130px;
-  height: 130px;
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.location-card .location-card-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }

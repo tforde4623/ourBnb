@@ -51,8 +51,34 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+const validateLocation = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Valid title required')
+    .isLength({ max: 30 })
+    .withMessage('Title can only be up to 30 characters in length'),
+  check('description')
+    .exists({ checkFalsy: true  })
+    .withMessage('Valid description required.'),
+  check('location')
+    .exists({ checkFalsy: true })
+    .withMessage('Location field required.')
+    .isLength({ max: 256 })
+    .withMessage('Location can be at max 256 characters in length.'),
+  check('price')
+    .exists({ checkFalsy: true })
+    .withMessage('Price field required.')
+    .isNumeric()
+    .withMessage('Price must be a number!'),
+  check('image')
+    .exists({ checkFalsy: true })
+    .withMessage('Valid url to an image descibing spot is required.'),
+  handleValidationErrors
+];
+
 module.exports = {
   handleValidationErrors,
   validateLogin,
-  validateSignup
+  validateSignup,
+  validateLocation
 };

@@ -56,15 +56,16 @@
 .nav-places-search {
   color: white;
   position: relative;
+  text-decoration: none;
 }
 
 .searchbar-popup {
   color: white;
   position: absolute;
   /* edit based on searchbar contents  */
-  left: -25px;
+  left: -35px;
   top: 30px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 15px;
   border: 0;
   color: black;

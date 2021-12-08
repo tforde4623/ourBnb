@@ -1,4 +1,12 @@
 /* TODO Add site wide styles */
 * {
   margin: 0;
+  font-family: sans-serif;
 }
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+

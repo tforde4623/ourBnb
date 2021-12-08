@@ -39,8 +39,16 @@ function Navigation({ isLoaded }){
       </li>
       <li onClick={openSearch} className='nav-link nav-places-search'>
         <p
-          id={searchVisible && 'searchSelected'}
-          className='places-nav-link'>Places to stay</p>
+          id={ window.location.href.includes('/any-location') || 
+            searchVisible ? 
+            'searchSelected' : null }
+          className='places-nav-link'>
+            <NavLink 
+              className='nav-places-search'
+              to='/any-location'>
+                Places To Stay
+            </NavLink>
+        </p>
         {searchVisible && (
           <input
             className='nav-link searchbar-popup'

@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       locationId: {
         type: Sequelize.INTEGER,
