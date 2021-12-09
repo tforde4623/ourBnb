@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { csrfFetch } from '../../store/csrf';
 import './index.css';
 
 const AddLocationForm = () => {
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
@@ -31,7 +32,7 @@ const AddLocationForm = () => {
         image
       })
     })
-      .then(() => <Redirect to='/' />)
+      .then(() => history.push('/'))
       .catch(async res => {
         const json = await res.json();
 

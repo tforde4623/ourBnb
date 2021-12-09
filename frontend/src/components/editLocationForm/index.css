@@ -22,6 +22,11 @@
   margin-bottom: 10px;
 }
 
-.form-input {
-  width: 80%;
+.edit-form-container input, .edit-form-container textarea {
+  padding: 5px;
+  margin: 10px;
+  border: 0;
+  border-bottom: 1px solid gray;
+  outline: none;
+  width: 180%
 }

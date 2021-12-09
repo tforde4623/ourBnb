@@ -14,12 +14,13 @@
   width: 90%;
 }
 
-.form-input {
+.form-container input, .form-container textarea {
   padding: 5px;
   margin: 10px;
   border: 0;
   border-bottom: 1px solid gray;
   outline: none;
+  width: 80%
 }
 
 .form-container h2 {
