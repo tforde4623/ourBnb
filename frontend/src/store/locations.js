@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 // action constants
 const SET_LOCATIONS = 'locations/get';
 const EDIT_LOCATION = 'locations/edit';
+const DELETE_LOCATION = 'locations/delete';
 
 // action objects
 export const setLocations = locations => {
@@ -16,6 +17,14 @@ export const editLocation = data => {
   return {
     type: EDIT_LOCATION,
     data
+  }
+};
+
+
+export const removeLocation = id => {
+  return {
+    type: DELETE_LOCATION,
+    id
   }
 };
 
@@ -53,6 +62,18 @@ export const updateLocation = data => async dispatch => {
   }
 };
 
+export const deleteLocation = id => async dispatch => {
+  console.log('delete')
+  const res = await csrfFetch(`/api/locations/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) {
+    dispatch(removeLocation(id));
+    return;
+  }
+};
+
 const initialState = { locations: null };
 
 const locationReducer = (state = initialState, action) => {
@@ -68,6 +89,13 @@ const locationReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       const newStateArr = newState.locations.filter(location => +location.id !== +action.data.id);;
       newStateArr.push(action.data);
+      newState.locations = newStateArr;
+      return newState;
+    }
+
+    case DELETE_LOCATION: {
+      newState = Object.assign({}, state);
+      const newStateArr = newState.locations.filter(location => +location.id !== +action.id);;
       newState.locations = newStateArr;
       return newState;
     }

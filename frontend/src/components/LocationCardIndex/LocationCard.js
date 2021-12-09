@@ -11,7 +11,7 @@ const LocationCard = ({ spot, image }) => {
 
   return (
     <div className='location-card' onClick={() => editLocation(spot.id)} >
-      <img src={image.imageUrl || null} alt='location preview'/>
+      <img src={image?.imageUrl || null} alt='location preview'/>
       <h3 className='location-card-title'>
         <span>{shortLocation}</span> 
         <span>{spot.price}$ / night</span>

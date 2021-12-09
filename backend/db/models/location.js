@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Location.belongsTo(models.User, { foreignKey: 'ownerId' });
-      Location.hasMany(models.Image, { foreignKey: 'locationId' });
+      Location.hasMany(models.Image, { foreignKey: 'locationId', onDelete: 'CASCADE' });
     }
   };
   Location.init({

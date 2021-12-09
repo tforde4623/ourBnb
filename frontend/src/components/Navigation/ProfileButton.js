@@ -36,6 +36,10 @@ function ProfileButton({ user }) {
     history.push('/user-locations')
   };
 
+  const goToNewLocation = () => {
+    history.push('/add-location');
+  }
+
   return (
     <>
       <button className='dropdown-btn' onClick={openMenu}>
@@ -52,6 +56,9 @@ function ProfileButton({ user }) {
           <div className='dropdown-group2'>
             <li onClick={goToLocations} className='dropdown-item-square'>
               My Locations
+            </li>
+            <li onClick={goToNewLocation} className='dropdown-item-square'>
+              Add a Location
             </li>
             <li onClick={logout} className='dropdown-item'>
               Log Out

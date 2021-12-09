@@ -89,9 +89,29 @@ router.put(
       const oldImage = await Image.findOne({ where: { locationId: id}})
 
       await oldImage.update({ imageUrl: image })
-      console.log(92, oldImage)
       res.status(204); // updated successfully
       res.json({ msg: 'Success' });
+    }
+  })
+);
+
+
+// delete a location (by id) DELETE /api/locations/:id
+router.delete(
+  '/:id',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const location = await Location.findByPk(req.params.id);
+    console.log('delete',location)
+
+    if (+location.ownerId !== +req.user.dataValues.id) {
+      res.status(401);
+      res.json({ msg: 'You are not the owner of this post!'});
+    } else {
+      await Location.destroy({ where: { id: req.params.id }});
+
+      res.status(202);
+      res.json({ msg: 'success' });
     }
   })
 );

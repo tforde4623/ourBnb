@@ -47,6 +47,7 @@ const AddLocationForm = () => {
         onSubmit={handleSubmit}
         className='location-form'
       >
+      <h2>Post Your Location!</h2>
         {errors && (
           <ul>
             {errors.map(err => (

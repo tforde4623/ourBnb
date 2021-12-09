@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateLocation } from '../../store/locations';
+import { updateLocation, deleteLocation } from '../../store/locations';
 import './index.css';
 
 const EditLocationForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const oldLocationSel = useSelector(state => state.location.locations) || [];
   const oldLocation = oldLocationSel.find(loc => +loc.id === +id);
 
@@ -47,13 +48,24 @@ const EditLocationForm = () => {
           setErrors(errJson.errors);
         }
       });
+
+    history.push('/user-locations');
+  };
+
+  const handleDelete = async e => {
+    e.preventDefault();
+    dispatch(deleteLocation(id));
+    history.push('/user-locations');
   };
 
   return (
-    <div className='form-container'>
+    <div className='edit-form-container'>
+      <img 
+        src={image} 
+        alt='preview of input'
+        className='preview-img' />
       <form
-        onSubmit={handleSubmit}
-        className='location-form'
+        className='location-edit-form'
       >
         {errors && (
           <ul>{errors.map(err => <li key={err}>{err}</li> )}</ul>
@@ -88,8 +100,9 @@ const EditLocationForm = () => {
           onChange={e => setImage(e.target.value)}
           className='form-input'
         />
-        <button>Submit</button>
+        <button onClick={handleSubmit}>Submit Changes</button>
       </form>
+      <button onClick={handleDelete}>Delete Location</button>
     </div>
   );
 }
