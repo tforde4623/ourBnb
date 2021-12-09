@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie } = require('../../utils/auth');
 const { validateSignup } = require('../../utils/validation');
-const { User } = require('../../db/models');
+const { User, Location, Image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -20,6 +20,22 @@ router.post(
     return res.json({
       user
     });
+  })
+);
+
+// GET /api/users/:userId/locations
+router.get(
+  '/:userId/locations',
+  asyncHandler(async (req, res) => {
+    const locations =
+      await Location.findAll({
+        where: {
+          ownerId: req.params.userId
+        },
+        include: { model: Image }
+      });
+
+    res.json(locations);
   })
 );
 

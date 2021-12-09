@@ -36,20 +36,20 @@
   background-color: white;
 }
 
-.dropdown-group2:hover {
+.dropdown-group2 .dropdown-item:hover {
   background-color: gray;
   border-radius: 0 0 8px 8px;
 }
 
-.dropdown-item {
+.dropdown-group2 .dropdown-item-square:hover {
+  background-color: gray;
+}
+
+.dropdown-item, .dropdown-item-square {
   padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.dropdown-group1, .dropdown-group2 {
-  padding: 5px;
 }
 
 /* nav search bar */

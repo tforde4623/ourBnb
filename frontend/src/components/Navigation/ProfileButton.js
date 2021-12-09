@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   
   const openMenu = () => {
@@ -27,6 +29,11 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logoutUser());
+    history.push('/');
+  };
+
+  const goToLocations = () => {
+    history.push('/user-locations')
   };
 
   return (
@@ -43,6 +50,9 @@ function ProfileButton({ user }) {
           </div>
           <hr/>
           <div className='dropdown-group2'>
+            <li onClick={goToLocations} className='dropdown-item-square'>
+              My Locations
+            </li>
             <li onClick={logout} className='dropdown-item'>
               Log Out
             </li>
