@@ -55,8 +55,8 @@ export const updateLocation = data => async dispatch => {
       image: data.Images[0].imageUrl
     })
   });
+  // refactor
   const locations = await res.json();
-  console.log('locations', locations)
 
   if (res.ok) {
     dispatch(editLocation(data))

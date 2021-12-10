@@ -93,7 +93,7 @@ router.put(
         price
       })
 
-      const oldImage = await Image.findOne({ where: { locationId: id}})
+      const oldImage = await Image.findOne({ where: { locationId: id }})
 
       await oldImage.update({ imageUrl: image })
       res.status(204); // updated successfully
@@ -109,7 +109,6 @@ router.delete(
   requireAuth,
   asyncHandler(async (req, res) => {
     const location = await Location.findByPk(req.params.id);
-    console.log('delete',location)
 
     if (+location.ownerId !== +req.user.dataValues.id) {
       res.status(401);

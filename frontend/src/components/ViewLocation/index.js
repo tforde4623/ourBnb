@@ -40,7 +40,10 @@ const ViewLocation = () => {
     <div className='location-view-container'>
       <div className='location-view'>
         <div className='location-view-group1'>
-          <img alt='location view' src={currLocation?.Images[0].imageUrl} />
+          <img 
+            className='location-details-img'
+            alt='location view' 
+            src={currLocation?.Images[0].imageUrl} />
           <div>{currLocation?.title}</div>
           <div>{currLocation?.price}$</div>
         </div>

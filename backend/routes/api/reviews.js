@@ -20,8 +20,7 @@ router.post(
       userId: req.user.dataValues.id
     });
 
-    console.log(rev)
-    res.json(rev); // test this
+    res.json(rev);
   })
 )
 
