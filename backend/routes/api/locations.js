@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const { requireAuth } = require('../../utils/auth');
 const { validateLocation } = require('../../utils/validation');
-const { Location, Image, User } = require('../../db/models');
+const { Location, Image, User, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -18,6 +18,12 @@ router.get(
           model: Image,
           limit: 1,
           attributes: ['imageUrl']
+        },
+        {
+          model: Review,
+          include: {
+            model: User
+          }
         }],
         limit: 10
       });
@@ -34,7 +40,8 @@ router.get(
       await Location.findByPk(req.params.id, { 
         include: [
           { model: Image },
-          { model: User }
+          { model: User },
+          { model: Review }
         ]
       });
 
@@ -115,5 +122,22 @@ router.delete(
     }
   })
 );
+
+// get all the reviews of a given location
+router.get(
+  '/:locationId/reviews',
+  asyncHandler(async (req, res) => {
+    const locationId = req.params.locationId;
+    const reviews = await Review.findAll({ 
+      where: { locationId },
+      include: [{ model: User }]
+    });
+
+    if (reviews) {
+      res.json(reviews);
+    }
+  })
+);
+
 
 module.exports = router;

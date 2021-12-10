@@ -10,6 +10,7 @@ import LocationCardIndex from './components/LocationCardIndex'
 import AddLocationForm from './components/addLocationForm';
 import EditLocationForm from './components/editLocationForm';
 import UserLocations from './components/UserLocations';
+import ViewLocation from './components/ViewLocation';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
       {isLoaded && (
         <div className='content'>
           <Switch>
+            <Route path='/location-details/:locId'>
+              <ViewLocation />
+            </Route>
             <Route path='/add-location'>
               <AddLocationForm />
             </Route>

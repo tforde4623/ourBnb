@@ -1,0 +1,46 @@
+.location-view-container {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+}
+
+.location-view-group1 {
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add-review-form {
+  width: 100%;
+}
+
+.add-review-form form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add-review-form .form-input {
+  padding: 5px;
+  /* width: 150%; */
+}
+
+.review-container {
+  list-style: none;
+  width: 50%;
+  padding: 10px;
+}
+
+.review-container li {
+  margin: 5px;
+  border: 1px solid lightgray;
+  width: 100%
+}

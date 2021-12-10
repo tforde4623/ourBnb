@@ -55,6 +55,8 @@ export const updateLocation = data => async dispatch => {
       image: data.Images[0].imageUrl
     })
   });
+  const locations = await res.json();
+  console.log('locations', locations)
 
   if (res.ok) {
     dispatch(editLocation(data))
@@ -83,7 +85,7 @@ const locationReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.locations = action.locations;
       return newState;
-    }
+  }
 
     case EDIT_LOCATION: {
       newState = Object.assign({}, state);
