@@ -35,7 +35,7 @@ function Navigation({ isLoaded }){
   return (
     <ul className='nav-container'>
       <li className='nav-link'>
-        <NavLink exact to="/">ourbnb</NavLink>
+        <NavLink className='title-nav' exact to="/"><i class="fas fa-bullseye"></i>urbnb</NavLink>
       </li>
       <li onClick={openSearch} className='nav-link nav-places-search'>
         <p
