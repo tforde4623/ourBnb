@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import Favicon from 'react-favicon';
 
 import configureStore from "./store";
 import { ModalProvider } from "./context/Modal";
@@ -34,6 +35,7 @@ function Root() {
 
 ReactDOM.render(
   <React.StrictMode>
+    <Favicon url='./images/favicon.ico' />
     <Root />
   </React.StrictMode>,
   document.getElementById('root')
