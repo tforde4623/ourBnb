@@ -1,0 +1,29 @@
+.homepage-content {
+  display: flex;
+  justify-content: center;
+}
+
+.main-photo {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.homepage-photo-main {
+  margin-top: 20px;
+  border-radius: 15px;
+  width: 90%;
+}
+
+.main-link {
+  position: absolute;
+  left: auto;
+  bottom: 5%;
+  z-index: 2;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 10px;
+  width: 10%;
+  text-align: center;
+  text-decoration: none;
+}

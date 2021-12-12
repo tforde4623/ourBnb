@@ -1,11 +1,12 @@
 .nav-container {
   /* figure out the coloration of navbar later */
-  background-color: black;
+  background-color: #222222;
   list-style: none;
   margin: 0px;
   padding: 10px;
   height: 40px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 

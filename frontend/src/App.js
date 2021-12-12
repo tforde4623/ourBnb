@@ -11,6 +11,7 @@ import AddLocationForm from './components/addLocationForm';
 import EditLocationForm from './components/editLocationForm';
 import UserLocations from './components/UserLocations';
 import ViewLocation from './components/ViewLocation';
+import HomePage from './components/HomePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
       {isLoaded && (
         <div className='content'>
           <Switch>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
             <Route path='/location-details/:locId'>
               <ViewLocation />
             </Route>

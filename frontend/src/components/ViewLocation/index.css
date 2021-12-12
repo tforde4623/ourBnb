@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
 }
 
 .location-view-group1 {
@@ -17,14 +17,38 @@
   flex-direction: column;
 }
 
+.location-view-group2 {
+  padding: 20px;
+}
+
+.location-details-head {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 90%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
 .location-details-img {
   border-radius: 15px;
-  width: 400px;
-  height: 400px;
+  width: 575px;
+  height: 575px;
 }
 
 .add-review-form {
-  width: 100%;
+  width: 110%;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-review-form h3 {
+  margin-left: 35px;
+  margin-top: 5px;
+  padding-top: 10px;
 }
 
 .add-review-form form {
@@ -32,28 +56,97 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.add-review-form button {
+  padding: 5px;
+  border-radius: 10px;
+  width: 150px;
+  margin-top: 5px;
+  border: 3px solid #64d098;
+}
+
+.add-review-form button:hover {
+  background-color: #64d098;
 }
 
 .add-review-form .form-input {
-  padding: 5px;
-  /* width: 150%; */
+  padding: 10px;
+  width: 90%;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+.add-review-form input {
+  margin-bottom: 10px;
+  outline-color: #64d098;
+}
+
+.add-review-form textarea {
+  height: 90px;
+  outline-color: #64d098;
 }
 
 .review-container {
   list-style: none;
-  width: 50%;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 110%;
 }
 
 .review-container li {
   margin: 5px;
-  border: 1px solid lightgray;
-  width: 100%
+  margin-bottom: 15px;
+  width: 42%;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 15px;
+  padding-bottom: 5px;
 }
+
+.review-container li button {
+  border-radius: 10px;
+  border: 0;
+  margin: 10px 5px 0 0px;
+  padding: 5px;
+  border: 2px solid transparent;
+}
+
+.review-container li button:hover {
+  border: 2px solid #64d098;
+  box-sizing: border-box;
+}
+
+.review-container h3 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.review-user {
+  font-size: 13px;
+  display: inline-block;
+}
+
+.review-date {
+  font-size: 10px; 
+  display: inline-block;
+}
+
 
 @media screen and (max-width: 500px) {
   .location-details-img {
     width: 320px;
     height: 320px;
+  }
+
+  .location-details-head {
+    width: 320px;
   }
 }

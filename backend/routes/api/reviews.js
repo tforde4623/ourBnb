@@ -24,5 +24,28 @@ router.post(
   })
 )
 
+router.delete(
+  '/:reviewId',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const review = await Review.findOne({
+      where: {
+        id: req.params.reviewId
+      }
+    });
+
+    if (req.user.dataValues.id === review.userId) {
+      await review.destroy();
+      console.log('got to line 39')
+      res.status(200);
+      return res.json({ review });
+    } else {
+      // can i put unauth in here?
+      next();
+    }
+
+  })
+)
+
 
 module.exports = router;
