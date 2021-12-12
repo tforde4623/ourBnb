@@ -35,7 +35,7 @@ function Root() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Favicon url='./images/favicon.ico' />
+    <Favicon url='./favicon.ico?'/>
     <Root />
   </React.StrictMode>,
   document.getElementById('root')
