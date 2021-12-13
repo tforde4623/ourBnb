@@ -42,6 +42,7 @@ const EditLocationForm = () => {
         imageUrl: image
       }]
     }))
+      .then(() => history.push('any-location'))
       .catch(async errs => {
         const errJson = await errs.json() || errs;
         if (errJson.errors) {
@@ -49,7 +50,6 @@ const EditLocationForm = () => {
         }
       });
 
-    history.push('/user-locations');
   };
 
   const handleDelete = async e => {
