@@ -10,9 +10,9 @@
 
 [Api Docs](https://github.com/tforde4623/ourBnb/wiki/Api-Docs)
 
-[Features](#)
+[Features](https://github.com/tforde4623/ourBnb/wiki/Working-Features)
 
-[Components](#)
+[Components](https://github.com/tforde4623/ourBnb/wiki/React-Components-List)
 
 [Database Schema](https://github.com/tforde4623/ourBnb/wiki/Database-Schema)
 
@@ -51,5 +51,20 @@ The twist that makes this different than airbnb is you have the option to share 
 | jsonwebtoken  | morgan                | per-env           | pg          | sequelize    |
 | sequelize-cli | dotenv-cli            | nodemon           |             |              | 
 ## Future Direction
+In the future there is a LOT I would like to do.
+
+Here are some of those things:
+    - Allow messaging between the owner of the location and the possible customers as well as the possible customers with each other. Implementing web sockets.
+    - Allow bookings of locations to take place.
+    - Add ability to check availability and price and calculate it based on how many nights to book on the spot.
+    - Use some photo hosting service (probably an aws box) to store live photos uploaded instead of urls.
 
 ## Personal Implementation Experience
+
+Challenges:
+    - CSS - I have not done the entire style alone for a website of this size without a framework. It was an eye opener that I need to practice my styling skills.
+    - Time - The original project had a time limit of one week, managing my time and delegating tasks to myself based on importance was a really cool experience.
+
+Wins: 
+    - I learned SO MUCH about full stack development and making the front and back end work together. As well as just all the technologies and topics in general.
+    - Seeing the project start to come together was really cool for me. I really was proud of myself for how much I learned in the time I had, and I am really excited to continue to work on this project to continue learning.
