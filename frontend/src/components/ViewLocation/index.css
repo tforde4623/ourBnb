@@ -99,6 +99,17 @@
   width: 110%;
 }
 
+.review-edit-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.review-edit-form input, .review-edit-form textarea {
+  border-radius: 10px;
+  margin: 5px;
+}
+
 .review-container li {
   margin: 5px;
   margin-bottom: 15px;

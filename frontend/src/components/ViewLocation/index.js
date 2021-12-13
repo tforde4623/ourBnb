@@ -14,6 +14,10 @@ const ViewLocation = () => {
   const currLocation = locations.find(location => +location.id === +locId);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
+  const [reviewEditForm, setReviewEditForm] = useState(null);
+  // state for review form
+  const [editReviewTitle, setEditReviewTitle] = useState('');
+  const [editReviewContent, setEditReviewContent] = useState('');
 
   useEffect(() => {
     dispatch(getUserReviews(locId));
@@ -39,6 +43,13 @@ const ViewLocation = () => {
 
   const handleDelete = val => {
     dispatch(removeReview(val))
+  };
+
+  const handleReviewEdit = review => {
+    console.log(review)
+    setReviewEditForm(review.id);
+    setEditReviewTitle(review.title);
+    setEditReviewContent(review.content);
   };
 
   return (
@@ -88,14 +99,33 @@ const ViewLocation = () => {
                   {new Date(review.updatedAt).toLocaleDateString()}
                 </p>
               </h3>
-              <p>{review.title}</p>
-              <p>{review.content}</p>
-              {sessionUser.username === review?.User.username 
-                ? <p>
-                    <button onClick={() => handleDelete(review.id)}>Delete</button>
-                    <button>Edit Review</button>
-                  </p> 
-                : null}
+                {reviewEditForm === review.id ? (
+                  <form className='review-edit-form'>
+                    <input 
+                      placeHolder='Review Title...'
+                      value={editReviewTitle}
+                      onChange={e => setEditReviewTitle(e.target.value)}
+                      className='form-input' />
+                    <textarea
+                      placeholder='How was it?...'
+                      value={editReviewContent}
+                      onChange={e => setEditReviewContent(e.target.value)}
+                      className='form-input'
+                    ></textarea>
+                    <button>Save</button>
+                  </form>
+                ) : (
+                  <div className='review-li'>
+                    <p>{review.title}</p>
+                    <p>{review.content}</p>
+                  {sessionUser.username === review?.User.username 
+                    ? <p>
+                        <button onClick={() => handleDelete(review.id)}>Delete</button>
+                        <button onClick={() => handleReviewEdit(review)}>Edit Review</button>
+                      </p> 
+                    : null}
+                  </div>
+                )}
             </li>
           ); 
         })}
