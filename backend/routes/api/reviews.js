@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const { requireAuth } = require('../../utils/auth');
 // validations
-const { Location, Image, User, Review } = require('../../db/models');
+const { User, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -36,7 +36,6 @@ router.delete(
 
     if (req.user.dataValues.id === review.userId) {
       await review.destroy();
-      console.log('got to line 39')
       res.status(200);
       return res.json({ review });
     } else {

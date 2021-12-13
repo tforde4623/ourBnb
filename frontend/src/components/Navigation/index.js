@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
@@ -9,7 +9,6 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   // const [searchVisible, setSearchVisible] = useState(false); // may change default to persist
-  const history = useHistory();
 
   // const openSearch = () => {
   //   if (searchVisible) return;
@@ -36,7 +35,7 @@ function Navigation({ isLoaded }){
   return (
     <ul className='nav-container'>
       <li className='nav-link'>
-        <NavLink className='title-nav' exact to="/"><i class="fas fa-bullseye"></i>urbnb</NavLink>
+        <NavLink className='title-nav' exact to="/"><i className="fas fa-bullseye"></i>urbnb</NavLink>
       </li>
       <li /* onClick={openSearch} */ className='nav-link nav-places-search'>
         <p>
