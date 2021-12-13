@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
@@ -8,12 +8,14 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-  const [searchVisible, setSearchVisible] = useState(false); // may change default to persist
+  // const [searchVisible, setSearchVisible] = useState(false); // may change default to persist
+  const history = useHistory();
 
-  const openSearch = () => {
-    if (searchVisible) return;
-    setSearchVisible(true);
-  } 
+  // const openSearch = () => {
+  //   if (searchVisible) return;
+  //   // future funtionality
+  //   // setSearchVisible(true);
+  // } 
 
   let sessionLinks;
   if (sessionUser) {
@@ -31,30 +33,26 @@ function Navigation({ isLoaded }){
     );
   }
 
-  // TODO: put login/signup stuff in a drop down
   return (
     <ul className='nav-container'>
       <li className='nav-link'>
         <NavLink className='title-nav' exact to="/"><i class="fas fa-bullseye"></i>urbnb</NavLink>
       </li>
-      <li onClick={openSearch} className='nav-link nav-places-search'>
-        <p
-          id={ window.location.href.includes('/any-location') || 
-            searchVisible ? 
-            'searchSelected' : null }
-          className='places-nav-link'>
-            <NavLink 
-              className='nav-places-search'
-              to='/any-location'>
-                Places To Stay
-            </NavLink>
+      <li /* onClick={openSearch} */ className='nav-link nav-places-search'>
+        <p>
+          <NavLink 
+            className={isActive => `nav-places-search ${isActive ? 'nav-active' : null}`}
+            to='/any-location'>
+              Places To Stay
+          </NavLink>
         </p>
-        {searchVisible && (
+        { /* future implementation */}
+        {/* searchVisible && (
           <input
             className='nav-link searchbar-popup'
             placeholder='choose a location!'
           ></input>
-        )}
+        ) */}
       </li>
       {isLoaded && sessionLinks}
     </ul>

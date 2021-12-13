@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { removeReview, getUserReviews, postUserReview, updateReview } from '../../store/reviews';
@@ -12,6 +12,7 @@ const ViewLocation = () => {
   const reviews = useSelector(state => Object.values(state.review.reviews)) || [];
   const sessionUser = useSelector(state => state.session.user);
   const currLocation = locations.find(location => +location.id === +locId);
+  const history = useHistory();
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
   const [reviewEditForm, setReviewEditForm] = useState(null);
@@ -60,7 +61,7 @@ const ViewLocation = () => {
     }));
     setReviewEditForm(null);
   }
-
+  
   return (
     <div className='location-view-container'>
       <div className='location-view'>
@@ -68,7 +69,9 @@ const ViewLocation = () => {
           <img 
             className='location-details-img'
             alt='location view' 
-            src={currLocation?.Images[0].imageUrl} />
+            src={currLocation?.Images[0].imageUrl} 
+            onClick={currLocation?.ownerId === sessionUser.id ? () => history.push(`/edit-location/${currLocation.id}`) : null}
+          />
           <div className='location-details-head'>
             <div>{currLocation?.title}</div>
             <div>{currLocation?.price}$ / night</div>

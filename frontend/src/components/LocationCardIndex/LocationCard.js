@@ -6,7 +6,7 @@ const LocationCard = ({ spot, image }) => {
   const history = useHistory();
 
   const editLocation = spotId => {
-    history.push(`/edit-location/${spotId}`);
+    history.push(`/location-details/${spotId}`);
   };
 
   return (

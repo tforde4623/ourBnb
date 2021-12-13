@@ -15,6 +15,7 @@
   font-size: 20px;
 }
 
+
 /* profile button dropdown css  */
 .profile-dropdown {
   position: absolute;
@@ -78,6 +79,10 @@
 }
 
 #searchSelected {
+  text-decoration: underline;
+}
+
+.nav-active {
   text-decoration: underline;
 }
 
