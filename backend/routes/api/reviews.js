@@ -47,5 +47,28 @@ router.delete(
   })
 )
 
+router.put(
+  '/:id',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const review = await Review.findByPk(id); 
+
+    if (req.user.dataValues.id === review.userId) {
+      await review.update(req.body);
+      res.status(200);
+
+      const retReview = await Review.findOne({
+        where: { id },
+        include: { model: User }
+      });
+      res.json(retReview);
+    } else {
+      res.status(401);
+      res.json({ msg: 'you do not own this record' });
+    }
+  })
+);
+
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { removeReview, getUserReviews, postUserReview } from '../../store/reviews';
+import { removeReview, getUserReviews, postUserReview, updateReview } from '../../store/reviews';
 import './index.css';
 
 const ViewLocation = () => {
@@ -46,11 +46,20 @@ const ViewLocation = () => {
   };
 
   const handleReviewEdit = review => {
-    console.log(review)
     setReviewEditForm(review.id);
     setEditReviewTitle(review.title);
     setEditReviewContent(review.content);
   };
+
+  const handleReviewEditSubmit = e => {
+    e.preventDefault();
+    dispatch(updateReview({
+      id: reviewEditForm,
+      title: editReviewTitle,
+      content: editReviewContent
+    }));
+    setReviewEditForm(null);
+  }
 
   return (
     <div className='location-view-container'>
@@ -112,7 +121,7 @@ const ViewLocation = () => {
                       onChange={e => setEditReviewContent(e.target.value)}
                       className='form-input'
                     ></textarea>
-                    <button>Save</button>
+                    <button onClick={handleReviewEditSubmit}>Save</button>
                   </form>
                 ) : (
                   <div className='review-li'>

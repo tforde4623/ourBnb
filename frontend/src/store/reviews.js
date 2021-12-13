@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 const CREATE_REVIEW = 'reviews/create';
 const LOAD_REVIEWS = 'reviews/load';
 const REMOVE_REVIEW = 'reviews/remove';
+const EDIT_REVIEW = 'reviews/edit';
 
 export const addReview = review => {
   return {
@@ -24,6 +25,13 @@ export const destroyReview = reviewId => {
     reviewId
   };
 };
+
+export const editReview = content => {
+  return {
+    type: EDIT_REVIEW,
+    content
+  };
+}; 
 
 export const postUserReview = review => async dispatch => {
     const res = await csrfFetch('/api/reviews', {
@@ -50,7 +58,22 @@ export const removeReview = reviewId => async dispatch => {
 
   const json = await res.json();
   dispatch(destroyReview(json.review.id))
-}; 
+};
+
+export const updateReview = content => async dispatch => {
+  const res = await csrfFetch(`/api/reviews/${content.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(content)
+  });
+
+  if (res.ok) {
+    const json = await res.json();
+    dispatch(editReview(json));
+  } else {
+    // errors
+    return null;
+  }
+};
 
 
 const initialState = { reviews: {} };
@@ -68,6 +91,14 @@ const reviewReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       const tmpRevs = newState.reviews.filter(rev => +rev.id !== +action.reviewId); 
       newState.reviews = tmpRevs;
+      return newState;
+    }
+
+    case EDIT_REVIEW: {
+      newState = Object.assign({}, state);
+      const oldRevs = newState.reviews.filter(rev => +rev.id !== +action.content.id);
+      oldRevs.push(action.content);
+      newState.reviews = oldRevs;
       return newState;
     }
 
