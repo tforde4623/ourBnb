@@ -52,7 +52,7 @@ const AddLocationForm = () => {
         {errors && (
           <ul>
             {errors.map(err => (
-              <li>{err}</li>
+              <li key={err}>{err}</li>
             ))}
           </ul>
         )}

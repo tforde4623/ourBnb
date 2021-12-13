@@ -65,7 +65,6 @@ export const updateLocation = data => async dispatch => {
 };
 
 export const deleteLocation = id => async dispatch => {
-  console.log('delete')
   const res = await csrfFetch(`/api/locations/${id}`, {
     method: 'DELETE'
   });

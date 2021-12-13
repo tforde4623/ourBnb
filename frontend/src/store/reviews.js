@@ -69,9 +69,11 @@ export const updateReview = content => async dispatch => {
   if (res.ok) {
     const json = await res.json();
     dispatch(editReview(json));
+    return json;
   } else {
     // errors
-    return null;
+    console.log('fuxk')
+    return res;
   }
 };
 

@@ -59,7 +59,12 @@ const validateLocation = [
     .withMessage('Title can only be up to 30 characters in length'),
   check('description')
     .exists({ checkFalsy: true  })
-    .withMessage('Valid description required.'),
+    .withMessage('Valid description required.')
+    .custom((value) => {
+      const str = value.replace(/\n/g, '');
+      return str.length > 0;
+    })
+    .withMessage('Valid description required'),
   check('location')
     .exists({ checkFalsy: true })
     .withMessage('Location field required.')
@@ -76,9 +81,27 @@ const validateLocation = [
   handleValidationErrors
 ];
 
+const validateReview = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Reviews must have titles to describe their content!')
+    .isLength({ max: 30 }) 
+    .withMessage('Title length must not exceed 30 characters.'),
+  check('content')
+    .custom((value) => {
+      const str = value.replace(/\n/g, '');
+      console.log(93, str)
+      return str.length > 0;
+    })
+    .withMessage('Valid content required'),
+  handleValidationErrors
+
+]; 
+
 module.exports = {
   handleValidationErrors,
   validateLogin,
   validateSignup,
-  validateLocation
+  validateLocation,
+  validateReview
 };

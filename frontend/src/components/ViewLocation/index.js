@@ -19,6 +19,7 @@ const ViewLocation = () => {
   // state for review form
   const [editReviewTitle, setEditReviewTitle] = useState('');
   const [editReviewContent, setEditReviewContent] = useState('');
+  const [reviewErrors, setReviewErrors] = useState([]);
 
   useEffect(() => {
     dispatch(getUserReviews(locId));
@@ -47,19 +48,24 @@ const ViewLocation = () => {
   };
 
   const handleReviewEdit = review => {
+    setReviewErrors([]);
     setReviewEditForm(review.id);
     setEditReviewTitle(review.title);
     setEditReviewContent(review.content);
   };
 
-  const handleReviewEditSubmit = e => {
+  const handleReviewEditSubmit = async e => {
     e.preventDefault();
-    dispatch(updateReview({
+    await dispatch(updateReview({
       id: reviewEditForm,
       title: editReviewTitle,
       content: editReviewContent
-    }));
-    setReviewEditForm(null);
+    }))
+      .then(() => setReviewEditForm(null))
+      .catch(async res => {
+      const json = await res.json();
+      setReviewErrors(json?.errors);
+    })
   }
   
   return (
@@ -113,6 +119,13 @@ const ViewLocation = () => {
               </h3>
                 {reviewEditForm === review.id ? (
                   <form className='review-edit-form'>
+                    {reviewErrors && (
+                      <ul>
+                        {reviewErrors.map(err => (
+                          <li key={err}>{err}</li>
+                        ))}
+                      </ul>
+                    )}
                     <input 
                       placeHolder='Review Title...'
                       value={editReviewTitle}

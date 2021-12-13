@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { requireAuth } = require('../../utils/auth');
-// validations
+const { validateReview } = require('../../utils/validation');
 const { User, Review } = require('../../db/models');
 
 const router = express.Router();
@@ -11,6 +11,7 @@ const router = express.Router();
 router.post(
   '/',
   requireAuth,
+  validateReview,
   asyncHandler(async (req, res) => {
     const { locationId, content, title } = req.body;
     const rev = await Review.create({
@@ -49,6 +50,7 @@ router.delete(
 router.put(
   '/:id',
   requireAuth,
+  validateReview,
   asyncHandler(async (req, res) => {
     const id = req.params.id;
     const review = await Review.findByPk(id); 
