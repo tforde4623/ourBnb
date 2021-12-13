@@ -3,13 +3,19 @@
 ### Links
 
 [check it out!](https://our-bnb.herokuapp.com/)
+
 [github repo](https://github.com/tforde4623/ourBnb)
 
 [Frontend Route Docs](#)
+
 [Api Docs](https://github.com/tforde4623/ourBnb/wiki/Api-Docs)
+
 [Features](#)
+
 [Components](#)
+
 [Database Schema](#)
+
 [Redux Structure Docs](#)
 
 ## What is it?
