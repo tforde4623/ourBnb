@@ -32,7 +32,7 @@ const AddLocationForm = () => {
         image
       })
     })
-      .then(() => history.push('/'))
+      .then(() => window.location.href = '/')
       .catch(async res => {
         const json = await res.json();
 
