@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <li>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className='signup' to="/signup">Sign Up</NavLink>
       </li>
     );
   }

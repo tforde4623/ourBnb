@@ -29,6 +29,10 @@
   z-index: 3;
 }
 
+.signup {
+  text-decoration: none;
+}
+
 .dropdown-btn {
   border-radius: 15px;
   background-color: white;
@@ -65,6 +69,7 @@
   color: white;
   position: relative;
   text-decoration: none;
+  margin-right: -4%;
 }
 
 .searchbar-popup {

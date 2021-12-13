@@ -150,6 +150,27 @@
   display: inline-block;
 }
 
+.review-errors li {
+  box-shadow: none;
+  margin: 0;
+  width: fit-content;
+}
+
+.review-errors {
+  background-color: #FFCCCC;
+  list-style: none;
+  width: 100%;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.review-li {
+  height: fit-content;
+}
+
 
 @media screen and (max-width: 500px) {
   .location-details-img {

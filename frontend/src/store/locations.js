@@ -56,7 +56,7 @@ export const updateLocation = data => async dispatch => {
     })
   });
   // refactor
-  const locations = await res.json();
+  // const locations = await res.json();
 
   if (res.ok) {
     dispatch(editLocation(data))

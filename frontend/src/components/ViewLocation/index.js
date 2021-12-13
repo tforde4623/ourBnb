@@ -120,7 +120,7 @@ const ViewLocation = () => {
                 {reviewEditForm === review.id ? (
                   <form className='review-edit-form'>
                     {reviewErrors && (
-                      <ul>
+                      <ul className='review-errors'>
                         {reviewErrors.map(err => (
                           <li key={err}>{err}</li>
                         ))}
