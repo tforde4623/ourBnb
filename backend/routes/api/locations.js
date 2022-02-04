@@ -12,8 +12,8 @@ const router = express.Router();
 router.get(
   '/',
   asyncHandler(async (_req, res) => {
-    const locations = 
-      await Location.findAll({ 
+    const locations =
+      await Location.findAll({
         include: [{
           model: Image,
           limit: 1,
@@ -36,8 +36,8 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res, next) => {
-    const location = 
-      await Location.findByPk(req.params.id, { 
+    const location =
+      await Location.findByPk(req.params.id, {
         include: [
           { model: Image },
           { model: User },
@@ -81,7 +81,7 @@ router.put(
     const { title, description, location, price, image } = req.body;
     const id = req.params.id;
     const oldPost = await Location.findByPk(id);
-    
+
     if (+oldPost.ownerId !== +req.user.dataValues.id) {
       res.status(401);
       res.json({ msg: 'You are not the owner of this post!' });
@@ -93,7 +93,7 @@ router.put(
         price
       })
 
-      const oldImage = await Image.findOne({ where: { locationId: id }})
+      const oldImage = await Image.findOne({ where: { locationId: id } })
 
       await oldImage.update({ imageUrl: image })
       res.status(204); // updated successfully
@@ -112,9 +112,9 @@ router.delete(
 
     if (+location.ownerId !== +req.user.dataValues.id) {
       res.status(401);
-      res.json({ msg: 'You are not the owner of this post!'});
+      res.json({ msg: 'You are not the owner of this post!' });
     } else {
-      await Location.destroy({ where: { id: req.params.id }});
+      await Location.destroy({ where: { id: req.params.id } });
 
       res.status(202);
       res.json({ msg: 'success' });
@@ -127,7 +127,7 @@ router.get(
   '/:locationId/reviews',
   asyncHandler(async (req, res) => {
     const locationId = req.params.locationId;
-    const reviews = await Review.findAll({ 
+    const reviews = await Review.findAll({
       where: { locationId },
       include: [{ model: User }]
     });
