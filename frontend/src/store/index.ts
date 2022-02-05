@@ -5,11 +5,17 @@ import sessionReducer from './session';
 import locationReducer from './locations';
 import reviewReducer from './reviews';
 
+
 const rootReducer = combineReducers({
   session: sessionReducer,
   location: locationReducer,
   review: reviewReducer
 });
+
+type AppDispatch = typeof rootReducer.dispatch
+
+// move this to like hook.ts
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 let enhancer;
 
