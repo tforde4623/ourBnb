@@ -1,4 +1,4 @@
-import { Action, ActionTypes } from './actionTypes/locations';
+import { Action, ActionTypes } from './actionTypes/locations'
 
 interface Image {
   imageUrl: string

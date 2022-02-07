@@ -12,13 +12,13 @@ declare global {
   }
 }
 
-
 const rootReducer = combineReducers({
   session: sessionReducer,
   location: locationReducer,
   review: reviewReducer
 });
 
+export type RootState = ReturnType<typeof rootReducer>
 
 let enhancer: any;
 if (process.env.NODE_ENV === 'production') {
@@ -29,11 +29,8 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-// TODO
-const configureStore = (preloadedState: any) => {
+const configureStore = (preloadedState: RootState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
-
-export type RootState = ReturnType<typeof rootReducer>
 
 export default configureStore;
