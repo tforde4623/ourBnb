@@ -5,6 +5,13 @@ import sessionReducer from './session';
 import locationReducer from './locations';
 import reviewReducer from './reviews';
 
+// redux devtool types are not used by redux defaut type package
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?: typeof compose
+  }
+}
+
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -12,24 +19,21 @@ const rootReducer = combineReducers({
   review: reviewReducer
 });
 
-type AppDispatch = typeof rootReducer.dispatch
 
-// move this to like hook.ts
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-
-let enhancer;
-
+let enhancer: any;
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
   const logger = require('redux-logger').default;
-  const composeEnhancers =
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-const configureStore = preloadedState => {
+// TODO
+const configureStore = (preloadedState: any) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
+
+export type RootState = ReturnType<typeof rootReducer>
 
 export default configureStore;

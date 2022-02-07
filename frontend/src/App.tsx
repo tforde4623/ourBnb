@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 // take note of this
-import { useAppDispatch } from './store';
+import { getLocations }  from './store/actionCreators/locations';
 import * as sessionActions from './store/session';
-import { getLocations}  from './store/locations';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import LocationCardIndex from './components/LocationCardIndex'
@@ -15,7 +15,7 @@ import ViewLocation from './components/ViewLocation';
 import HomePage from './components/HomePage';
 
 function App() {
-  const dispatch = useAppDispatch();
+  const dispatch: any = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {

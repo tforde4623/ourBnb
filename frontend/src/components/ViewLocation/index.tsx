@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
+import { useTypedSelector } from '../../hooks/useTypeSelector'
 import { removeReview, getUserReviews, postUserReview, updateReview } from '../../store/reviews';
 import './index.css';
 
+// TODO: move this to review redux
+interface Review {
+  id: number,
+  title: string,
+  content: string
+}
+
 const ViewLocation = () => {
-  const { locId } = useParams();
-  const dispatch = useDispatch();
-  const locations = useSelector(state => state.location.locations) || [];
-  const reviews = useSelector(state => Object.values(state.review.reviews)) || [];
-  const sessionUser = useSelector(state => state.session.user);
+  const { locId }: { locId: string } = useParams();
+  const dispatch: any = useDispatch();
+  const locations = useTypedSelector(state => state.location.locations) || [];
+  const reviews = useTypedSelector(state => Object.values(state.review.reviews)) || [];
+  const sessionUser = useTypedSelector(state => state.session.user);
   const currLocation = locations.find(location => +location.id === +locId);
   const history = useHistory();
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-  const [reviewEditForm, setReviewEditForm] = useState(null);
+  const [reviewEditForm, setReviewEditForm] = useState<number | null>(null);
   // state for review form
   const [editReviewTitle, setEditReviewTitle] = useState('');
   const [editReviewContent, setEditReviewContent] = useState('');
@@ -30,7 +38,7 @@ const ViewLocation = () => {
     setReviewContent('');
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
     const payload = {
@@ -43,18 +51,18 @@ const ViewLocation = () => {
     clearReviewState();
   }
 
-  const handleDelete = val => {
+  const handleDelete = (val: number) => {
     dispatch(removeReview(val))
   };
 
-  const handleReviewEdit = review => {
+  const handleReviewEdit = (review: Review) => {
     setReviewErrors([]);
     setReviewEditForm(review.id);
     setEditReviewTitle(review.title);
     setEditReviewContent(review.content);
   };
 
-  const handleReviewEditSubmit = async e => {
+  const handleReviewEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(updateReview({
       id: reviewEditForm,
@@ -62,7 +70,7 @@ const ViewLocation = () => {
       content: editReviewContent
     }))
       .then(() => setReviewEditForm(null))
-      .catch(async res => {
+      .catch(async (res: Response) => {
       const json = await res.json();
       setReviewErrors(json?.errors);
     })
@@ -76,7 +84,15 @@ const ViewLocation = () => {
             className='location-details-img'
             alt='location view' 
             src={currLocation?.Images[0].imageUrl} 
-            onClick={currLocation?.ownerId === sessionUser.id ? () => history.push(`/edit-location/${currLocation.id}`) : null}
+            onClick={
+              () => {
+                if (currLocation && sessionUser) {
+                  if (currLocation?.ownerId === sessionUser.id) {
+                    history.push(`/edit-location/${currLocation.id}`)
+                  }
+                }
+              }
+            }
           />
           <div className='location-details-head'>
             <div>{currLocation?.title}</div>
