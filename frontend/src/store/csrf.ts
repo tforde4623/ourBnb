@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 interface FetchOptions {
-  method?: 'GET' | 'POST' | 'DELETE',
+  method?: 'GET' | 'POST' | 'DELETE' | 'PUT',
   headers?: Record<any, any>,
   body?: string,
 }
