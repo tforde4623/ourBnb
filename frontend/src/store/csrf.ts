@@ -1,7 +1,13 @@
 import Cookies from 'js-cookie';
 
+interface FetchOptions {
+  method?: 'GET' | 'POST' | 'DELETE',
+  headers?: Record<any, any>,
+  body?: string,
+}
+
 // a function to make fetch requests with our xsrf token parsed from cookie
-export async function csrfFetch(url, options = {}) {
+export async function csrfFetch(url: string, options: FetchOptions = {}) {
   // setting some "default" values for the options obj
   options.method = options.method || 'GET';
   options.headers = options.headers || {};
