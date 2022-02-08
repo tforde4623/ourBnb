@@ -1,9 +1,9 @@
-import { Review } from '../reviews';
+import { Review, NewReview } from '../reviews';
 import { ActionTypes } from '../actionTypes/reviews';
 import { csrfFetch } from '../csrf';
 import { Dispatch } from 'redux';
 
-export const postUserReview = (review: Review) => {
+export const postUserReview = (review: NewReview) => {
   return async (dispatch: Dispatch) => {
       const res = await csrfFetch('/api/reviews', {
         method: 'POST',
@@ -51,7 +51,7 @@ export const removeReview = (reviewId: number) => {
   };
 }
 
-export const updateReview = (content: Review) => {
+export const updateReview = (content: { id?: number | null, title?: string, content?: string }) => {
   return async (dispatch: Dispatch) => {
     const res = await csrfFetch(`/api/reviews/${content.id}`, {
       method: 'PUT',

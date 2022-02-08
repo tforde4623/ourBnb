@@ -1,11 +1,14 @@
 import { Action, ActionTypes } from './actionTypes/reviews';
 
-export interface Review {
-  id: number,
+export interface NewReview {
   title: string,
   content: string,
-  userId: number,
+  userId?: number,
   locationId: number
+}
+
+export interface Review extends NewReview {
+  id: number,
 }
 
 interface ReviewState {

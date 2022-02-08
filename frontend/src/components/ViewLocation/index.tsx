@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../hooks/useTypeSelector'
-import { removeReview, getUserReviews, postUserReview, updateReview } from '../../store/reviews';
+import { removeReview, getUserReviews, postUserReview, updateReview } from '../../store/actionCreators/reviews';
 import './index.css';
 
 // TODO: move this to review redux
@@ -30,7 +30,7 @@ const ViewLocation = () => {
   const [reviewErrors, setReviewErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getUserReviews(locId));
+    dispatch(getUserReviews(parseInt(locId)));
   }, [locId, dispatch])
 
   const clearReviewState = () => {
@@ -38,13 +38,13 @@ const ViewLocation = () => {
     setReviewContent('');
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
   
     const payload = {
       title: reviewTitle,
       content: reviewContent,
-      locationId: locId
+      locationId: parseInt(locId)
     }
 
     dispatch(postUserReview(payload));
@@ -62,8 +62,8 @@ const ViewLocation = () => {
     setEditReviewContent(review.content);
   };
 
-  const handleReviewEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleReviewEditSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     await dispatch(updateReview({
       id: reviewEditForm,
       title: editReviewTitle,
@@ -109,7 +109,6 @@ const ViewLocation = () => {
         <h3>Add a Review</h3>
         <form onSubmit={handleSubmit}>
           <input 
-            placeHolder='Review Title...'
             value={reviewTitle}
             onChange={e => setReviewTitle(e.target.value)}
             className='form-input' />
@@ -143,7 +142,6 @@ const ViewLocation = () => {
                       </ul>
                     )}
                     <input 
-                      placeHolder='Review Title...'
                       value={editReviewTitle}
                       onChange={e => setEditReviewTitle(e.target.value)}
                       className='form-input' />

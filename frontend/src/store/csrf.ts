@@ -7,7 +7,7 @@ interface FetchOptions {
 }
 
 // a function to make fetch requests with our xsrf token parsed from cookie
-export async function csrfFetch(url: string, options: FetchOptions = {}) {
+export async function csrfFetch(url: string, options: FetchOptions = {}): Promise<Response> {
   // setting some "default" values for the options obj
   options.method = options.method || 'GET';
   options.headers = options.headers || {};

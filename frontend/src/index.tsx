@@ -11,22 +11,17 @@ import * as sessionActions from "./store/session";
 import "./index.css";
 import App from "./App";
 
-// tmp test (change types obviously)
-declare global {
-  interface Window {
-    csrfFetch: any,
-    store: any,
-    sessionActions: any
-  }
-}
-
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
 
+  // ignoring ts errors this is only for dev
+  // @ts-ignore 
   window.csrfFetch = csrfFetch;
+  // @ts-ignore 
   window.store = store;
+  // @ts-ignore 
   window.sessionActions = sessionActions;
 }
 

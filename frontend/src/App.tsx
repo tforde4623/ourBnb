@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 // take note of this
 import { getLocations }  from './store/actionCreators/locations';
-import * as sessionActions from './store/session';
+import { restoreUser } from './store/actionCreators/session'; 
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import LocationCardIndex from './components/LocationCardIndex'
@@ -19,7 +19,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionActions.restoreUser())
+    dispatch(restoreUser())
       .then(() => setIsLoaded(true));
     dispatch(getLocations());
   }, [dispatch]);
